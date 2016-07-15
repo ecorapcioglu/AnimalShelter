@@ -1,0 +1,64 @@
+﻿@model AnimalShelter.Models.Animal
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Animal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AnimalShelter.ShelterAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnimalShelter.ShelterAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnimalType.AnimalTypeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnimalType.AnimalTypeDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnimalName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnimalName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnimalGender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnimalGender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnimalAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnimalAge)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

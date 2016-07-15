@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AnimalShelter.Models.Animal>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<h2>Index</h2>*@
+<h2>Avaliable Animals</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+    @Html.ActionLink("Add Animal", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalShelter.ShelterAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalType.AnimalTypeDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalGender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalAge)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnimalShelter.ShelterAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnimalType.AnimalTypeDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnimalName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnimalGender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnimalAge)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AnimalId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AnimalId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AnimalId })
+        </td>
+    </tr>
+}
+
+</table>

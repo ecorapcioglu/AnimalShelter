@@ -1,0 +1,50 @@
+﻿@model AnimalShelter.Models.AnimalShelter
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AnimalShelter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ShelterAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShelterAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShelterName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShelterName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShelterPhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShelterPhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShelterEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShelterEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ShelterId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

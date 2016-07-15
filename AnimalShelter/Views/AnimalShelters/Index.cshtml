@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AnimalShelter.Models.AnimalShelter>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<h2>Index</h2>*@
+<h2>Shelters</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+    @Html.ActionLink("Add New Shelter", "Create")
+
+   @using (Html.BeginForm())
+    {
+    <p>
+        Shelter Name: @Html.TextBox("SearchString")
+        <input type="submit" value="Filter"/>
+        Shelter Address: @Html.TextBox("ShelterAddress")
+        <input type="submit" value="Filter" />
+    </p>
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ShelterAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShelterName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShelterPhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShelterEmail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShelterAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShelterName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShelterPhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShelterEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ShelterId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ShelterId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ShelterId })
+        </td>
+    </tr>
+}
+
+</table>
