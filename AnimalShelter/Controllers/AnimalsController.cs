@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -11,9 +12,51 @@ namespace AnimalShelter.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Animals
-        public ActionResult Index()
+        public ActionResult Index(string animalGender, string animalType, int? animalAge)
         {
-            var animals = db.Animals.Include(a => a.AnimalShelter).Include(a => a.AnimalType);
+
+            // set up the animal gender drop down.
+            var animalGenderList = new List<string>();
+
+            var animalGenderQuery = from d in db.Animals
+                                    orderby d.AnimalGender
+                                    select d.AnimalGender;
+
+            animalGenderList.AddRange(animalGenderQuery.Distinct());
+            ViewBag.animalGender = new SelectList(animalGenderList);
+
+            // set up the animal type drop down
+            var animalTypeList = new List<string>();
+
+            var animalTypeQuery = from d in db.Animals
+                                  join t in db.AnimalTypes on d.AnimalTypeId equals t.AnimalTypeId
+                                  orderby t.AnimalTypeDescription
+                                  select t.AnimalTypeDescription;
+
+            animalTypeList.AddRange(animalTypeQuery.Distinct());
+            ViewBag.animalType = new SelectList(animalTypeList);
+
+
+            var animals = from a in db.Animals
+                          select a;
+
+            if (!string.IsNullOrEmpty(animalGender))
+            {
+                animals = animals.Where(x => x.AnimalGender == animalGender);
+            }
+
+            // need to come back and fix the drop down.
+            if (!string.IsNullOrEmpty(animalGender))
+            {
+                animals = animals.Where(x => x.AnimalType.AnimalTypeDescription == animalType);
+            }
+
+            if (animalAge != null)
+            {
+                animals = animals.Where(x => x.AnimalAge == animalAge.Value);
+            }
+
+            //var animals = db.Animals.Include(a => a.AnimalShelter).Include(a => a.AnimalType);
             return View(animals.ToList());
         }
 

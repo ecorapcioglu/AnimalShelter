@@ -10,6 +10,18 @@
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
     @Html.ActionLink("Add Animal", "Create")
+
+    @using (Html.BeginForm())
+    {
+    <p>
+        Animal Age: @Html.TextBox("AnimalAge")
+        <input type="submit" value="Filter" />
+        Animal Gender: @Html.DropDownList("animalGender", "All")
+        Animal Type: @Html.DropDownList("animalType", "All")
+        <input type="submit" value="Filter" />
+    </p>
+    }
+
 </p>
 <table class="table">
     <tr>
