@@ -9,13 +9,13 @@ namespace AnimalShelter.Models
         [Key]
         public int VetHospitalId { get; set; }
 
-        [DisplayName("Hospital Name")]
+        [DisplayName("Name")]
         public string VetHospitalName { get; set; }
 
         [DisplayName("Address")]
         public string VetHospitalAddress { get; set; }
 
-        [DisplayName("Hospital Hours")]
+        [DisplayName("Hours")]
         public string VetHospitalHours { get; set; }
 
         [DataType(DataType.PhoneNumber)]

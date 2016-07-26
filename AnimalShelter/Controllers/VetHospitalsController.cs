@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -11,9 +12,34 @@ namespace AnimalShelter.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: VetHospitals
-        public ActionResult Index()
+        public ActionResult Index(string hospitalName, string shelterName)
         {
-            var vetHospitals = db.VetHospitals.Include(v => v.AnimalShelter);
+            var vetHospitals = from v in db.VetHospitals
+                               select v;
+
+            // set up vet hospital name search field.
+            if (!string.IsNullOrEmpty(hospitalName))
+            {
+                vetHospitals = vetHospitals.Where(v => v.VetHospitalName.Contains(hospitalName));
+            }
+
+            // setup shelter name drop down field.
+            var shelterNameList = new List<string>();
+
+            var shelterNameQuery = from v in db.VetHospitals
+                                   join s in db.AnimalShelters on v.ShelterId equals s.ShelterId
+                                   orderby s.ShelterName
+                                   select s.ShelterName;
+
+            shelterNameList.AddRange(shelterNameQuery.Distinct());
+            ViewBag.shelterName = new SelectList(shelterNameList);
+
+            if (!string.IsNullOrEmpty(shelterName))
+            {
+                vetHospitals = vetHospitals.Where(x => x.AnimalShelter.ShelterName == shelterName);
+            }
+
+            //var vetHospitals = db.VetHospitals.Include(v => v.AnimalShelter);
             return View(vetHospitals.ToList());
         }
 
@@ -35,7 +61,7 @@ namespace AnimalShelter.Controllers
         // GET: VetHospitals/Create
         public ActionResult Create()
         {
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress");
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName");
             return View();
         }
 
@@ -53,7 +79,7 @@ namespace AnimalShelter.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress", vetHospital.ShelterId);
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName", vetHospital.ShelterId);
             return View(vetHospital);
         }
 
@@ -69,7 +95,7 @@ namespace AnimalShelter.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress", vetHospital.ShelterId);
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName", vetHospital.ShelterId);
             return View(vetHospital);
         }
 
@@ -86,7 +112,7 @@ namespace AnimalShelter.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress", vetHospital.ShelterId);
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName", vetHospital.ShelterId);
             return View(vetHospital);
         }
 
