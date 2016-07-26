@@ -206,6 +206,8 @@
     <Compile Include="Controllers\AnimalTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PersonnelsController.cs" />
+    <Compile Include="Controllers\PersonnelTypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,13 +215,19 @@
     <Compile Include="Migrations\201607151634546_Initial.Designer.cs">
       <DependentUpon>201607151634546_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607261800487_Initial1.cs" />
+    <Compile Include="Migrations\201607261800487_Initial1.Designer.cs">
+      <DependentUpon>201607261800487_Initial1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Animal.cs" />
     <Compile Include="Models\AnimalShelter.cs" />
+    <Compile Include="Models\PersonnelType.cs" />
     <Compile Include="Models\AnimalType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Personnel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -300,6 +308,16 @@
     <Content Include="Views\AnimalTypes\Details.cshtml" />
     <Content Include="Views\AnimalTypes\Edit.cshtml" />
     <Content Include="Views\AnimalTypes\Index.cshtml" />
+    <Content Include="Views\Personnels\Create.cshtml" />
+    <Content Include="Views\Personnels\Delete.cshtml" />
+    <Content Include="Views\Personnels\Details.cshtml" />
+    <Content Include="Views\Personnels\Edit.cshtml" />
+    <Content Include="Views\Personnels\Index.cshtml" />
+    <Content Include="Views\PersonnelTypes\Create.cshtml" />
+    <Content Include="Views\PersonnelTypes\Delete.cshtml" />
+    <Content Include="Views\PersonnelTypes\Details.cshtml" />
+    <Content Include="Views\PersonnelTypes\Edit.cshtml" />
+    <Content Include="Views\PersonnelTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -318,6 +336,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201607151634546_Initial.resx">
       <DependentUpon>201607151634546_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607261800487_Initial1.resx">
+      <DependentUpon>201607261800487_Initial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

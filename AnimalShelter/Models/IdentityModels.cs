@@ -34,5 +34,9 @@ namespace AnimalShelter.Models
         public System.Data.Entity.DbSet<Animal> Animals { get; set; }
 
         public System.Data.Entity.DbSet<AnimalType> AnimalTypes { get; set; }
+
+        public System.Data.Entity.DbSet<Personnel> Personnels { get; set; }
+
+        public System.Data.Entity.DbSet<PersonnelType> PersonnelTypes { get; set; }
     }
 }
