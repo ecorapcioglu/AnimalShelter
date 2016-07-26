@@ -208,6 +208,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PersonnelsController.cs" />
     <Compile Include="Controllers\PersonnelTypesController.cs" />
+    <Compile Include="Controllers\VetHospitalsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -219,6 +220,10 @@
     <Compile Include="Migrations\201607261800487_Initial1.Designer.cs">
       <DependentUpon>201607261800487_Initial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607261953412_Initial2.cs" />
+    <Compile Include="Migrations\201607261953412_Initial2.Designer.cs">
+      <DependentUpon>201607261953412_Initial2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Animal.cs" />
@@ -228,6 +233,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Personnel.cs" />
+    <Compile Include="Models\VetHospital.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -318,6 +324,11 @@
     <Content Include="Views\PersonnelTypes\Details.cshtml" />
     <Content Include="Views\PersonnelTypes\Edit.cshtml" />
     <Content Include="Views\PersonnelTypes\Index.cshtml" />
+    <Content Include="Views\VetHospitals\Create.cshtml" />
+    <Content Include="Views\VetHospitals\Delete.cshtml" />
+    <Content Include="Views\VetHospitals\Details.cshtml" />
+    <Content Include="Views\VetHospitals\Edit.cshtml" />
+    <Content Include="Views\VetHospitals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -339,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607261800487_Initial1.resx">
       <DependentUpon>201607261800487_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607261953412_Initial2.resx">
+      <DependentUpon>201607261953412_Initial2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
