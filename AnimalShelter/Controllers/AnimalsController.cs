@@ -15,6 +15,9 @@ namespace AnimalShelter.Controllers
         public ActionResult Index(string animalGender, string animalType, int? animalAge)
         {
 
+            var animals = from a in db.Animals
+                          select a;
+
             // set up the animal gender drop down.
             var animalGenderList = new List<string>();
 
@@ -24,6 +27,11 @@ namespace AnimalShelter.Controllers
 
             animalGenderList.AddRange(animalGenderQuery.Distinct());
             ViewBag.animalGender = new SelectList(animalGenderList);
+
+            if (!string.IsNullOrEmpty(animalGender))
+            {
+                animals = animals.Where(x => x.AnimalGender == animalGender);
+            }
 
             // set up the animal type drop down
             var animalTypeList = new List<string>();
@@ -36,27 +44,17 @@ namespace AnimalShelter.Controllers
             animalTypeList.AddRange(animalTypeQuery.Distinct());
             ViewBag.animalType = new SelectList(animalTypeList);
 
-
-            var animals = from a in db.Animals
-                          select a;
-
-            if (!string.IsNullOrEmpty(animalGender))
-            {
-                animals = animals.Where(x => x.AnimalGender == animalGender);
-            }
-
-            // need to come back and fix the drop down.
-            if (!string.IsNullOrEmpty(animalGender))
+            if (!string.IsNullOrEmpty(animalType))
             {
                 animals = animals.Where(x => x.AnimalType.AnimalTypeDescription == animalType);
             }
 
+            // set up search by animal age.
             if (animalAge != null)
             {
                 animals = animals.Where(x => x.AnimalAge == animalAge.Value);
             }
 
-            //var animals = db.Animals.Include(a => a.AnimalShelter).Include(a => a.AnimalType);
             return View(animals.ToList());
         }
 

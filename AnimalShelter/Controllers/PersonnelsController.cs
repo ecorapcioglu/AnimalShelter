@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -11,9 +12,54 @@ namespace AnimalShelter.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Personnels
-        public ActionResult Index()
+        public ActionResult Index(string firstName, string lastName, string personnelType, string shelterName)
         {
-            var personnels = db.Personnels.Include(p => p.AnimalShelter).Include(p => p.PersonnelType);
+            var personnels = from p in db.Personnels
+                             select p;
+
+            if (!string.IsNullOrEmpty(firstName))
+            {
+                personnels = personnels.Where(p => p.PersonnelFirstName.Contains(firstName));
+            }
+
+            if (!string.IsNullOrEmpty(lastName))
+            {
+                personnels = personnels.Where(p => p.PersonnelLastName.Contains(lastName));
+            }
+
+            // set up the personnel type drop down
+            var personnelTypeList = new List<string>();
+
+            var personnelTypeQuery = from p in db.Personnels
+                                     join t in db.PersonnelTypes on p.PersonnelTypeId equals t.PersonnelTypeId
+                                     orderby t.PersonnelTypeTitle
+                                     select t.PersonnelTypeTitle;
+
+            personnelTypeList.AddRange(personnelTypeQuery.Distinct());
+            ViewBag.personnelType = new SelectList(personnelTypeList);
+
+            if (!string.IsNullOrEmpty(personnelType))
+            {
+                personnels = personnels.Where(x => x.PersonnelType.PersonnelTypeTitle == personnelType);
+            }
+
+            // set up the search by shelter drop down
+            var shelterNameList = new List<string>();
+
+            var shelterNameQuery = from p in db.Personnels
+                                   join s in db.AnimalShelters on p.ShelterId equals s.ShelterId
+                                   orderby s.ShelterName
+                                   select s.ShelterName;
+
+            shelterNameList.AddRange(shelterNameQuery.Distinct());
+            ViewBag.shelterName = new SelectList(shelterNameList);
+
+            if (!string.IsNullOrEmpty(shelterName))
+            {
+                personnels = personnels.Where(x => x.AnimalShelter.ShelterName == shelterName);
+            }
+
+            //var personnels = db.Personnels.Include(p => p.AnimalShelter).Include(p => p.PersonnelType);
             return View(personnels.ToList());
         }
 

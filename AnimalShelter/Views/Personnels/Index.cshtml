@@ -9,6 +9,17 @@
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
     @Html.ActionLink("Add Personnel", "Create")
+
+    @using (Html.BeginForm())
+    {
+    <p>
+        Shelter: @Html.DropDownList("shelterName", "All")
+        First Name: @Html.TextBox("FirstName")
+        Last Name: @Html.TextBox("LastName")
+        Personnel Type: @Html.DropDownList("personnelType", "All")
+        <input type="submit" value="Filter" />
+    </p>
+    }
 </p>
 <table class="table">
     <tr>
