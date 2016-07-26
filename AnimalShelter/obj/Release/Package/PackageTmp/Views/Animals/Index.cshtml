@@ -10,11 +10,23 @@
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
     @Html.ActionLink("Add Animal", "Create")
+
+    @using (Html.BeginForm())
+    {
+    <p>
+        Animal Age: @Html.TextBox("AnimalAge")
+        <input type="submit" value="Filter" />
+        Animal Gender: @Html.DropDownList("animalGender", "All")
+        Animal Type: @Html.DropDownList("animalType", "All")
+        <input type="submit" value="Filter" />
+    </p>
+    }
+
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AnimalShelter.ShelterAddress)
+            @Html.DisplayNameFor(model => model.AnimalShelter.ShelterName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AnimalType.AnimalTypeDescription)
@@ -34,7 +46,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.AnimalShelter.ShelterAddress)
+            @Html.DisplayFor(modelItem => item.AnimalShelter.ShelterName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AnimalType.AnimalTypeDescription)
