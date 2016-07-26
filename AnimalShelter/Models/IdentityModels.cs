@@ -38,5 +38,7 @@ namespace AnimalShelter.Models
         public System.Data.Entity.DbSet<Personnel> Personnels { get; set; }
 
         public System.Data.Entity.DbSet<PersonnelType> PersonnelTypes { get; set; }
+
+        public System.Data.Entity.DbSet<VetHospital> VetHospitals { get; set; }
     }
 }

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AnimalShelter.Models.VetHospital>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalShelter.ShelterAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VetHospitalName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VetHospitalAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VetHospitalHours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VetHospitalPhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VetHospitalEmail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnimalShelter.ShelterAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VetHospitalName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VetHospitalAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VetHospitalHours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VetHospitalPhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VetHospitalEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VetHospitalId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VetHospitalId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VetHospitalId })
+        </td>
+    </tr>
+}
+
+</table>
