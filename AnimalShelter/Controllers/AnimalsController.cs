@@ -78,7 +78,7 @@ namespace AnimalShelter.Controllers
         // GET: Animals/Create
         public ActionResult Create()
         {
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress");
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName");
             ViewBag.AnimalTypeId = new SelectList(db.AnimalTypes, "AnimalTypeId", "AnimalTypeDescription");
             return View();
         }
@@ -97,7 +97,7 @@ namespace AnimalShelter.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress", animal.ShelterId);
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName", animal.ShelterId);
             ViewBag.AnimalTypeId = new SelectList(db.AnimalTypes, "AnimalTypeId", "AnimalTypeDescription", animal.AnimalTypeId);
             return View(animal);
         }
@@ -114,7 +114,7 @@ namespace AnimalShelter.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress", animal.ShelterId);
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName", animal.ShelterId);
             ViewBag.AnimalTypeId = new SelectList(db.AnimalTypes, "AnimalTypeId", "AnimalTypeDescription", animal.AnimalTypeId);
             return View(animal);
         }
@@ -132,7 +132,7 @@ namespace AnimalShelter.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress", animal.ShelterId);
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName", animal.ShelterId);
             ViewBag.AnimalTypeId = new SelectList(db.AnimalTypes, "AnimalTypeId", "AnimalTypeDescription", animal.AnimalTypeId);
             return View(animal);
         }

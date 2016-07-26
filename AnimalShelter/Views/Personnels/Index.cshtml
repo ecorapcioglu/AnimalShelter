@@ -7,12 +7,13 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
+    @Html.ActionLink("Add Personnel", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AnimalShelter.ShelterAddress)
+            @Html.DisplayNameFor(model => model.AnimalShelter.ShelterName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PersonnelType.PersonnelTypeTitle)
@@ -35,7 +36,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.AnimalShelter.ShelterAddress)
+            @Html.DisplayFor(modelItem => item.AnimalShelter.ShelterName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PersonnelType.PersonnelTypeTitle)

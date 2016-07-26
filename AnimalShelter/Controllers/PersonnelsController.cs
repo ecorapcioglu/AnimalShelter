@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using AnimalShelter.Models;
 
@@ -39,7 +35,7 @@ namespace AnimalShelter.Controllers
         // GET: Personnels/Create
         public ActionResult Create()
         {
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress");
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName");
             ViewBag.PersonnelTypeId = new SelectList(db.PersonnelTypes, "PersonnelTypeId", "PersonnelTypeTitle");
             return View();
         }
@@ -58,7 +54,7 @@ namespace AnimalShelter.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress", personnel.ShelterId);
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName", personnel.ShelterId);
             ViewBag.PersonnelTypeId = new SelectList(db.PersonnelTypes, "PersonnelTypeId", "PersonnelTypeTitle", personnel.PersonnelTypeId);
             return View(personnel);
         }
@@ -75,7 +71,7 @@ namespace AnimalShelter.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress", personnel.ShelterId);
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName", personnel.ShelterId);
             ViewBag.PersonnelTypeId = new SelectList(db.PersonnelTypes, "PersonnelTypeId", "PersonnelTypeTitle", personnel.PersonnelTypeId);
             return View(personnel);
         }
@@ -93,7 +89,7 @@ namespace AnimalShelter.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterAddress", personnel.ShelterId);
+            ViewBag.ShelterId = new SelectList(db.AnimalShelters, "ShelterId", "ShelterName", personnel.ShelterId);
             ViewBag.PersonnelTypeId = new SelectList(db.PersonnelTypes, "PersonnelTypeId", "PersonnelTypeTitle", personnel.PersonnelTypeId);
             return View(personnel);
         }
