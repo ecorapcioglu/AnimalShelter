@@ -19,6 +19,7 @@ namespace AnimalShelter.Models
         public string VetHospitalHours { get; set; }
 
         [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^[2-9]\d{2}-\d{3}-\d{4}$", ErrorMessage = "Please enter the phone number in the followng form: XXX-XXX-XXXX")]
         [DisplayName("Phone Number")]
         public string VetHospitalPhoneNumber { get; set; }
 
