@@ -21,7 +21,6 @@ namespace AnimalShelter.Models
         public string ShelterPhoneNumber { get; set; }
 
         [DataType(DataType.EmailAddress)]
-        [RegularExpression(@"(@)(.+)$")]
         [DisplayName("Email")]
         public string ShelterEmail { get; set; }
 
