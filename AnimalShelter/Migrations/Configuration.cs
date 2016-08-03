@@ -1,3 +1,5 @@
+using AnimalShelter.Models;
+
 namespace AnimalShelter.Migrations
 {
     using System.Data.Entity.Migrations;
@@ -15,14 +17,11 @@ namespace AnimalShelter.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.PersonnelTypes.AddOrUpdate(p => p.PersonnelTypeTitle,
+                new PersonnelType { PersonnelTypeTitle = "Employee" },
+                new PersonnelType { PersonnelTypeTitle = "Volunteer" },
+                new PersonnelType { PersonnelTypeTitle = "Manager" },
+                new PersonnelType { PersonnelTypeTitle = "Donor" });
         }
     }
 }
